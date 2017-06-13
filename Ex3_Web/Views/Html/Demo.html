@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="../../Bootstrap/Content/bootstrap.min.css"/>
+    <script src="../../Bootstrap/Scripts/jquery-1.9.1.js"></script>
+    <script src="../../Bootstrap/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../Bootstrap/Content/bootstrap-theme.min.css"/>
+</head>
+<body>
+
+<button id="generate">Generate</button>
+    <button id="solve">Solve</button>
+<script>
+    $(function() {
+
+        $("#generate").on('click',
+            function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '../../api/SinglePlayer',
+                    data: {
+                        mazeName: "aaa",
+                        rows: "10",
+                        columns: "10"
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        alert(response.Maze);
+                    },
+
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert("Error: connection lost");
+                    }
+                });
+            });
+        $("#solve").on('click',
+            function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '../../api/SinglePlayer',
+                    data: {
+                        mazeName: "aaa",
+                        algorithmType: "1"
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        alert(response.Solution);
+                    },
+
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert("Error: connection lost");
+                    }
+                });
+            });
+       
+    });
+
+</script>
+</body>
+</html>
